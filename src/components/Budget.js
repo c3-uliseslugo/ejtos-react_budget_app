@@ -7,9 +7,16 @@ const Budget = () => {
     const totalExpenses = expenses.reduce((total, item) => {
         return (total = total + item.cost);
     }, 0);
-    
+
     const handleBudgetChange = (event) => {
-        setNewBudget(event.target.value);
+        const value = event.target.value;
+
+        if(totalExpenses > value) {
+            alert("You cannot reduce the budget value lower than the spending");
+            return;
+        }
+
+        setNewBudget(value);
     }
     return (
 <div className='alert alert-secondary'>
